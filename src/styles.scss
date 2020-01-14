@@ -1,0 +1,354 @@
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+button {
+    border: none;
+    &:focus {
+        outline: none;
+    }
+}
+
+a {
+    text-decoration: none;
+}
+
+@mixin flexbox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.light-text {
+    color: rgba(242, 242, 242, .7);
+}
+
+.dark-text {
+    color: rgba(32, 32, 32, 1);
+}
+
+.btn {
+    background-color: rgba(242, 242, 242, .7);
+    cursor: pointer;
+    padding: .5rem;
+    text-transform: uppercase;
+    border-radius: 5px;
+}
+
+// ---------------------------- PALETTE
+.palette {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    .palette-colors {
+        height: 90%;
+        width: 100%;
+        display: flex;
+        align-self: center;
+        flex-wrap: wrap;
+        .color-box {
+            @include flexbox;
+            width: 20%;
+            height: 25%;
+            margin: 0 auto;
+            flex-direction: column;
+            position: relative;
+            cursor: pointer;
+            text-transform: uppercase;
+            .copy-container {
+                @include flexbox;
+                justify-content: space-between;
+                width: 100%;
+                height: 100%;
+                flex-direction: column;
+                font-size: .8rem;
+                .box-content {
+                    align-self: flex-start;
+                    margin: 1rem;
+                    font-weight: 300;
+                    font-size: .9rem;
+                }
+                .copy-btn {
+                    opacity: 0;
+                    transition: .4s;
+                }
+                .see-more {
+                    margin: 1rem;
+                    align-self: flex-end;
+                    color: rgba(32, 32, 32, 1);
+                }
+            }
+            &:hover {
+                .copy-btn {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+}
+
+// ---------------------------- Single Palette
+.single-color-palette {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    .btn-back {
+        position: absolute;
+        right: 2rem;
+        bottom: 5rem;
+        height: 3rem;
+        transition: .4s;
+        box-shadow: 0px 0px 40px rgba(32, 32, 32, .1);
+        &:hover {
+            background-color: rgba(32, 32, 32, 1);
+            color: rgba(235, 235, 235, 1);
+        }
+    }
+    .single-color-boxes {
+        height: 90%;
+        display: flex;
+        // flex-wrap: wrap;
+        .color-box {
+            @include flexbox;
+            width: 20%;
+            height: 100%;
+            flex-direction: column;
+            position: relative;
+            cursor: pointer;
+            text-transform: uppercase;
+            .copy-container {
+                @include flexbox;
+                justify-content: center;
+                width: 100%;
+                height: 100%;
+                flex-direction: column;
+                font-size: .8rem;
+                .box-content {
+                    // align-self: flex-start;
+                    margin: 1rem;
+                    font-weight: 300;
+                    font-size: 1rem;
+                    opacity: 0;
+                }
+                .copy-btn {
+                    align-self: center;
+                    opacity: 0;
+                    transition: .4s;
+                }
+            }
+            &:hover {
+                .copy-btn {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+}
+
+// ---------------------------- Palette-List
+.palette-list {
+    height: 100vh;
+    @include flexbox;
+    align-items: flex-start;
+    background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    .palette-container {
+        width: 50%;
+        @include flexbox;
+        align-items: flex-start;
+        flex-direction: column;
+        flex-wrap: wrap;
+        .palette-nav {
+            display: flex;
+            width: 100%;
+            margin: 1rem 0;
+            justify-content: space-between;
+            .logo {
+                width: 5rem;
+                img {
+                    width: 100%;
+                }
+            }
+        }
+        .palettes {
+            box-sizing: border-box;
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(3, 30%);
+            grid-gap: 5%;
+        }
+    }
+}
+
+// ---------------------------- MINI PALETTE
+.mini-palette {
+    @include flexbox;
+    flex-direction: column;
+    background-color: rgba(242, 242, 242, 1);
+    box-shadow: 0px 0px 30px rgba(32, 32, 32, .1);
+    border-radius: 10px;
+    padding: 1rem;
+    position: relative;
+    overflow: hidden;
+    transform: scale(1);
+    transition: .2s;
+    &:hover {
+        cursor: pointer;
+        box-shadow: 0px 0px 40px rgba(32, 32, 32, .2);
+    }
+    .colors {
+        background-color: rgba(235, 235, 235, 1);
+        height: 200px;
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        overflow: hidden;
+        border-radius: 10px;
+        .mini-color {
+            height: 25%;
+            width: 20%;
+            display: inline-block;
+            margin: 0 auto;
+            position: relative;
+            margin-bottom: -3.5px;
+        }
+    }
+    .title {
+        @include flexbox;
+        justify-content: space-between;
+        width: 100%;
+        margin: 0;
+        padding-top: .5rem;
+        position: relative;
+    }
+    .emoji {
+       margin-left: .5rem;
+       font-size: 1.5rem; 
+    }
+}
+
+// ---------------------------- POPUP MESSAGE
+@keyframes popUp {
+    0% {
+        opacity: 0;
+        transform: translateY(-100%);
+    }
+    50% {
+        transform: translateY(10%);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(0%);
+    }
+}
+
+.pop-up {
+    @include flexbox;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 15rem;
+    transform: translateY(-100%);
+    z-index: 5;
+    background-color: rgba(242, 242, 242, .7);
+    opacity: 0;
+    transition: all .5s ease-in-out;
+    .pop-up-text {
+        font-size: 1.2rem;
+        text-transform: uppercase;
+    }
+    &.active {
+        transform: translateY(0%);
+        opacity: 1;
+        animation: popUp .5s;
+    }
+}
+
+// ---------------------------- NAVBAR
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    background-color: rgba(242, 242, 242, 1);
+    position: sticky;
+    top: 0;
+    z-index: 99;
+    height: 3.5rem;
+    box-shadow: 0px 0px 30px rgba(32, 32, 32, .2);
+    .left-side {
+        @include flexbox;
+        .logo {
+            @include flexbox;
+            width: 5rem;
+            height: 100%;
+            padding: 0 1rem;
+            cursor: pointer;
+            background-color: rgba(235, 235, 235, 1);
+            img {
+                width: 100%;
+            }
+        }
+        .slider-container {
+            @include flexbox;
+            width: 15rem;
+            justify-content: space-around;
+            .level {
+                width: 5rem;
+            }
+        }
+    }
+    .right-side {
+        @include flexbox;
+        height: 100%;
+        width: 15%;
+        .select-container {
+            .MuiSelect-select {
+                width: 10rem;
+            }
+        }
+    }
+}
+
+// ---------------------------- COLOR SLIDER 
+.slider {
+    @include flexbox;
+    width: 100%;
+    height: 2rem;
+    padding: .4rem;
+    .rc-slider {
+        width: 70%;
+        @include flexbox;
+        .rc-slider-track {
+            background-color: transparent;
+        }
+        .rc-slider-rail {
+            height: .4rem;
+        }
+        .rc-slider-handle {
+            background-color: tomato;
+            margin: 0;
+            box-shadow: none;
+            outline: none;
+            border: none;
+        }
+    }
+    
+}
+
+// ---------------------------- footer
+.footer {
+    @include flexbox;
+    justify-content: flex-end;
+    background-color: rgba(242, 242, 242, 1);
+    height: 3rem;
+    .palette-info {
+        width: 10%;
+        @include flexbox;
+        justify-content: space-between;
+        margin-right: 2rem;
+    }
+} 
+
